@@ -58,7 +58,7 @@ public:
                 currentStr = strStack.top();
                 strStack.pop();
                 while (multiplier--) {
-                    currentStr += decodedStr;
+                    currentStr = currentStr + decodedStr;
                 }
             } else {
                 currentStr += c;
