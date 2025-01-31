@@ -228,5 +228,5 @@ def dropDuplicateEmails(customers: pd.DataFrame) -> pd.DataFrame:
 import pandas as pd
 
 def dropMissingData(students: pd.DataFrame) -> pd.DataFrame:
-    newDF = students.dropna()
+    newDF = students.dropna(subset=["name"])
     return newDF 
