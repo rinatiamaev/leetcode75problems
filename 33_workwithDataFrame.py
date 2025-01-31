@@ -230,3 +230,141 @@ import pandas as pd
 def dropMissingData(students: pd.DataFrame) -> pd.DataFrame:
     newDF = students.dropna(subset=["name"])
     return newDF 
+
+# Rename Columns
+# DataFrame students
+# +-------------+--------+
+# | Column Name | Type   |
+# +-------------+--------+
+# | id          | int    |
+# | first       | object |
+# | last        | object |
+# | age         | int    |
+# +-------------+--------+
+# Write a solution to rename the columns as follows:
+
+# id to student_id
+# first to first_name
+# last to last_name
+# age to age_in_years
+# The result format is in the following example.
+
+ 
+
+# Example 1:
+# Input:
+# +----+---------+----------+-----+
+# | id | first   | last     | age |
+# +----+---------+----------+-----+
+# | 1  | Mason   | King     | 6   |
+# | 2  | Ava     | Wright   | 7   |
+# | 3  | Taylor  | Hall     | 16  |
+# | 4  | Georgia | Thompson | 18  |
+# | 5  | Thomas  | Moore    | 10  |
+# +----+---------+----------+-----+
+# Output:
+# +------------+------------+-----------+--------------+
+# | student_id | first_name | last_name | age_in_years |
+# +------------+------------+-----------+--------------+
+# | 1          | Mason      | King      | 6            |
+# | 2          | Ava        | Wright    | 7            |
+# | 3          | Taylor     | Hall      | 16           |
+# | 4          | Georgia    | Thompson  | 18           |
+# | 5          | Thomas     | Moore     | 10           |
+# +------------+------------+-----------+--------------+
+# Explanation: 
+# The column names are changed accordingly.
+
+import pandas as pd
+
+def renameColumns(students: pd.DataFrame) -> pd.DataFrame:
+    new_stud = students.rename(columns={"id": "student_id", "first": "first_name", "last": "last_name", "age": "age_in_years"})
+    return new_stud
+
+# Change Data Type
+
+# DataFrame students
+# +-------------+--------+
+# | Column Name | Type   |
+# +-------------+--------+
+# | student_id  | int    |
+# | name        | object |
+# | age         | int    |
+# | grade       | float  |
+# +-------------+--------+
+# Write a solution to correct the errors:
+
+# The grade column is stored as floats, convert it to integers.
+
+# The result format is in the following example.
+
+ 
+
+# Example 1:
+# Input:
+# DataFrame students:
+# +------------+------+-----+-------+
+# | student_id | name | age | grade |
+# +------------+------+-----+-------+
+# | 1          | Ava  | 6   | 73.0  |
+# | 2          | Kate | 15  | 87.0  |
+# +------------+------+-----+-------+
+# Output:
+# +------------+------+-----+-------+
+# | student_id | name | age | grade |
+# +------------+------+-----+-------+
+# | 1          | Ava  | 6   | 73    |
+# | 2          | Kate | 15  | 87    |
+# +------------+------+-----+-------+
+# Explanation: 
+# The data types of the column grade is converted to int.
+
+import pandas as pd
+
+def changeDatatype(students: pd.DataFrame) -> pd.DataFrame:
+    students['grade'] = students['grade'].astype(int)
+    return students
+
+
+# Fill Missing Data
+
+# DataFrame products
+# +-------------+--------+
+# | Column Name | Type   |
+# +-------------+--------+
+# | name        | object |
+# | quantity    | int    |
+# | price       | int    |
+# +-------------+--------+
+# Write a solution to fill in the missing value as 0 in the quantity column.
+
+# The result format is in the following example.
+
+ 
+
+# Example 1:
+# Input:+-----------------+----------+-------+
+# | name            | quantity | price |
+# +-----------------+----------+-------+
+# | Wristwatch      | None     | 135   |
+# | WirelessEarbuds | None     | 821   |
+# | GolfClubs       | 779      | 9319  |
+# | Printer         | 849      | 3051  |
+# +-----------------+----------+-------+
+# Output:
+# +-----------------+----------+-------+
+# | name            | quantity | price |
+# +-----------------+----------+-------+
+# | Wristwatch      | 0        | 135   |
+# | WirelessEarbuds | 0        | 821   |
+# | GolfClubs       | 779      | 9319  |
+# | Printer         | 849      | 3051  |
+# +-----------------+----------+-------+
+# Explanation: 
+# The quantity for Wristwatch and WirelessEarbuds are filled by 0.
+
+import pandas as pd
+
+def fillMissingValues(products: pd.DataFrame) -> pd.DataFrame:
+    products["quantity"] = products["quantity"].fillna(0)
+    return products    
