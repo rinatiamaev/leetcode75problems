@@ -135,3 +135,98 @@ import pandas as pd
 def createBonusColumn(employees: pd.DataFrame) -> pd.DataFrame:
     employees["bonus"] = employees["salary"] * 2
     return employees
+
+# Drop Duplicate Rows
+
+# DataFrame customers
+# +-------------+--------+
+# | Column Name | Type   |
+# +-------------+--------+
+# | customer_id | int    |
+# | name        | object |
+# | email       | object |
+# +-------------+--------+
+# There are some duplicate rows in the DataFrame based on the email column.
+
+# Write a solution to remove these duplicate rows and keep only the first occurrence.
+
+# The result format is in the following example.
+
+ 
+
+# Example 1:
+# Input:
+# +-------------+---------+---------------------+
+# | customer_id | name    | email               |
+# +-------------+---------+---------------------+
+# | 1           | Ella    | emily@example.com   |
+# | 2           | David   | michael@example.com |
+# | 3           | Zachary | sarah@example.com   |
+# | 4           | Alice   | john@example.com    |
+# | 5           | Finn    | john@example.com    |
+# | 6           | Violet  | alice@example.com   |
+# +-------------+---------+---------------------+
+# Output:  
+# +-------------+---------+---------------------+
+# | customer_id | name    | email               |
+# +-------------+---------+---------------------+
+# | 1           | Ella    | emily@example.com   |
+# | 2           | David   | michael@example.com |
+# | 3           | Zachary | sarah@example.com   |
+# | 4           | Alice   | john@example.com    |
+# | 6           | Violet  | alice@example.com   |
+# +-------------+---------+---------------------+
+# Explanation:
+# Alic (customer_id = 4) and Finn (customer_id = 5) both use john@example.com, so only the first occurrence of this email is retained.
+
+
+import pandas as pd
+
+def dropDuplicateEmails(customers: pd.DataFrame) -> pd.DataFrame:
+    new_cust = customers.drop_duplicates(subset=["email"])
+    return new_cust
+
+#  Drop Missing Data
+# DataFrame students
+# +-------------+--------+
+# | Column Name | Type   |
+# +-------------+--------+
+# | student_id  | int    |
+# | name        | object |
+# | age         | int    |
+# +-------------+--------+
+# There are some rows having missing values in the name column.
+
+# Write a solution to remove the rows with missing values.
+
+# The result format is in the following example.
+
+ 
+
+# Example 1:
+
+# Input:
+# +------------+---------+-----+
+# | student_id | name    | age |
+# +------------+---------+-----+
+# | 32         | Piper   | 5   |
+# | 217        | None    | 19  |
+# | 779        | Georgia | 20  |
+# | 849        | Willow  | 14  |
+# +------------+---------+-----+
+# Output:
+# +------------+---------+-----+
+# | student_id | name    | age |
+# +------------+---------+-----+
+# | 32         | Piper   | 5   |
+# | 779        | Georgia | 20  | 
+# | 849        | Willow  | 14  | 
+# +------------+---------+-----+
+# Explanation: 
+# Student with id 217 havs empty value in the name column, so it will be removed.
+
+import pandas as pd
+
+def dropMissingData(students: pd.DataFrame) -> pd.DataFrame:
+    newDF = students.dropna()
+    return newDF 
