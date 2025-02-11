@@ -29,10 +29,15 @@
 # 1 <= n <= 231 - 1
 
 
-class Solution:
-    def isHappy(self, n: int) -> bool:
-        seen = set()
-        while n != 1 and n not in seen:
-            seen.add(n)
-            n = sum(int(digit) ** 2 for digit in str(n))
-        return n == 1
+# class Solution:
+#     def isHappy(self, n: int) -> bool:
+#         seen = set()
+#         while n != 1 and n not in seen:
+#             seen.add(n)
+#             n = sum(int(digit) ** 2 for digit in str(n))
+#         return n == 1
+
+n = 20
+s = str(n)
+for letter in s:
+    print(letter)
