@@ -28,38 +28,46 @@
 # There will be no two consecutive operators in the input.
 # Every number and running calculation will fit in a signed 32-bit integer.
 
-def calculate(s: str) -> int:
-    stack = []
-    current_number = 0
-    result = 0
-    sign = 1
-    
-    for i, char in enumerate(s):
-        if char.isdigit():
-            current_number = current_number * 10 + int(char)
+class Solution:
+    def calculate(self, s: str) -> int:
         
-        elif char == '+':
-            result += sign * current_number
-            current_number = 0
-            sign = 1
+        stack = []
+        current_number = 0
+        result = 0
+        sign = 1
         
-        elif char == '-':
-            result += sign * current_number
-            current_number = 0
-            sign = -1
+        i = 0
+        while i < len(s):
+            char = s[i]
+            
+            if char.isdigit():
+                current_number = current_number * 10 + int(char)
+            
+            elif char == '+':
+                result += sign * current_number
+                current_number = 0
+                sign = 1
+            
+            elif char == '-':
+                result += sign * current_number
+                current_number = 0
+                sign = -1
+            
+            elif char == '(':
+                stack.append(result)
+                stack.append(sign)
+                result = 0
+                sign = 1
+            
+            elif char == ')':
+                result += sign * current_number
+                current_number = 0
+                result *= stack.pop()
+                result += stack.pop()
+            i += 1
+        result += sign * current_number
         
-        elif char == '(':
-            stack.append(result)
-            stack.append(sign)
-            result = 0
-            sign = 1
-        
-        elif char == ')':
-            result += sign * current_number
-            current_number = 0
-            result *= stack.pop()
-            result += stack.pop()
+        return result
 
-    result += sign * current_number
-    
-    return result
+
+        
